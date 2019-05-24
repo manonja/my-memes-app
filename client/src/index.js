@@ -21,6 +21,7 @@ ReactDOM.render((
             <Route path='/' render={Home} />
             <Route exact path='/signin' render={Signin} />
             <Route exact path='/signup' render={Signup} />
+            <Route component= {() => <h1>Page not found,</h1>} />
         </React.Fragment>
     </Router>), document.getElementById('root'));
 
