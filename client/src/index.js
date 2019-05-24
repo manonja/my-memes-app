@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import Home from './pages/Home'
+import Signin from './pages/Signin'
+import Signup from './pages/Signup'
 import * as serviceWorker from './serviceWorker';
 
 import { BrowserRouter as Router, Route } from 'react-router-dom';
@@ -15,8 +17,12 @@ import "mdbreact/dist/css/mdb.css";
 
 ReactDOM.render((
     <Router>
-        <Route path='/' render={Home} />
-</Router>), document.getElementById('root'));
+        <React.Fragment>
+            <Route path='/' render={Home} />
+            <Route exact path='/signin' render={Signin} />
+            <Route exact path='/signup' render={Signup} />
+        </React.Fragment>
+    </Router>), document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

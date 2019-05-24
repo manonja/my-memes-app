@@ -1,0 +1,35 @@
+import React, { Component } from 'react';
+
+
+const Signup = () => {
+    return (  
+        // <!-- Default form login -->
+        <div>
+              <form className="text-center border border-light p-5">
+
+                <p className="h4 mb-4">Sign up</p>
+
+                <input type="username" id="defaultLoginFormEmail" className="form-control mb-4" placeholder="username" />
+
+                <input type="password" id="defaultLoginFormPassword" className="form-control mb-4" placeholder="Password" />
+
+                <div className="d-flex justify-content-around">
+                    <div>
+                        <div className="custom-control custom-checkbox">
+                            <input type="checkbox" className="custom-control-input" id="defaultLoginFormRemember"/>
+                            <label className="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <button className="btn btn-info btn-block my-4" type="submit">Sign up</button>
+
+                </form>
+        </div>
+      
+    );
+} 
+      
+
+export default Signup;

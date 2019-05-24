@@ -1,5 +1,8 @@
 import React  from 'react';
-import Signin from './Signin'
+// import Signin from './Signin'
+// import Signup from './Signup'
+import { Link } from 'react-router-dom'
+
 
 const Home = () => {
     return ( 
@@ -15,8 +18,8 @@ const Home = () => {
                 </div>
 
                 <div className="pt-2">
-                    <button  type="button" className="btn btn-blue waves-effect">Signin</button>
-                    <button type="button" className="btn btn-outline-primary waves-effect">Signup</button>
+                    <Link to='/signin'><button  type="button" className="btn btn-blue waves-effect">Signin</button></Link>
+                    <Link to='/signup'><button type="button" className="btn btn-outline-primary waves-effect">Signup</button></Link>
                 </div>
             </div>
         </div>
