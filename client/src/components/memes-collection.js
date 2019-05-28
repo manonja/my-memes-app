@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 
+import API from '../API'
+
 class MemesCollection extends Component {
     state = {
         memes: []
@@ -8,7 +10,16 @@ class MemesCollection extends Component {
     componentDidMount() {
         if (!this.props.username) {
             this.props.history.push('/signin')
-        }
+          } else {
+            API.getInventory()
+              .then(data => {
+                if (data.error) {
+                  alert(data.error)
+                } else {
+                  this.setState({ items: data })
+                }
+              })
+          }
     }
 
     getMemes = () => {

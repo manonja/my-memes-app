@@ -1,8 +1,9 @@
 class API {
-   static baseUrl = 'http://localhost:3000' 
+   static baseUrl = 'http://localhost:3001' 
    static signinUrl = API.baseUrl + '/signin'
    static signupUrl = API.baseUrl + '/signup'
    static validateUrl = API.baseUrl + '/validate'
+   static memesUrl = API.baseUrl + '/memes'
 
    static signin (user) {
     return fetch(this.signinUrl, {
@@ -22,10 +23,16 @@ class API {
    }
 
    static validate () {
-       const id = localStorage.getItem('token') 
+       const token = localStorage.getItem('token') 
        return fetch(this.validateUrl, {
-        headers: {Authorization: id}
+        headers: { Authorization: token }
     }).then(resp => resp.json())
+   }
+
+   static getMemes () {
+       return fetch(this.memesUrl, {
+           headers: {Authorization: localStorage.getItem('token')}
+       }).then(resp => resp.json)
    }
 }
 

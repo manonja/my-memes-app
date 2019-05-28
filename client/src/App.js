@@ -14,8 +14,11 @@ class App extends Component {
     username: ''
   }
 
-  signin = (username) => {
-    this.setState({username})
+  signin = (username, token) => {
+    localStorage.setItem('token', token)
+    this.setState({username}, () => {
+      this.props.history.push('/memes')
+    })
   }
 
   signup = (username) => {
@@ -35,7 +38,7 @@ class App extends Component {
           this.props.history.push('/')
         }
         else {
-          this.signin(data.username)
+          this.signin(data.username, localStorage.getItem('token'))
         }
       })
   }

@@ -19,9 +19,8 @@ class Signin extends Component {
                 }
                 else {
                     // user is authentificated!
-                    this.props.signin(this.state.username)
-                    this.props.history.push('/memes')
-                    localStorage.setItem('token', data.id)
+                    this.props.signin(this.state.username, data.token)
+                    // this.props.history.push('/memes')
                 }
             })
     }
