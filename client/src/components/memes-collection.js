@@ -5,6 +5,12 @@ class MemesCollection extends Component {
         memes: []
     }
 
+    componentDidMount() {
+        if (!this.props.username) {
+            this.props.history.push('/signin')
+        }
+    }
+
     getMemes = () => {
         return fetch('https://api.imgflip.com/get_memes')
         .then(resp => resp.json())
