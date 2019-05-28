@@ -1,5 +1,49 @@
 class UsersController < ApplicationController
   
+  def signin
+    # find user then authenticate
+    user = User.find_by(username: params[:username])
+    if user && user.authenticate(params[:password])
+      render json: {token: issue_token(id: user.id)}
+    else
+      render json: {error: 'User/password combo not found'}, status: 400
+    end
+  end
+
+  def signup
+    # find user then authenticate
+    user = User.create(username: params[:username], password: params[:password])
+    # puts user
+    # byebug
+    if user 
+      render json: user
+    else
+      render json: {error: 'User/password combo not found'}, status: 400
+    end
+  end
+
+
+  def validate 
+    user = get_current_user
+    if user
+      render json: {username: user.username}
+    else
+      render json: {error: 'invalid user'}, status: 404
+
+    end
+  end
+
+  def memes
+    user = get_current_user
+    if user
+      render json: user.customised_memes
+    else
+      render json: {error: 'invalid user'}, status: 404
+
+    end
+
+  end 
+
   def index
     users = User.all
     render json: users
@@ -34,6 +78,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-      params.require(:user).permit(:id, :username, :password_digest)
+      params.require(:user).permit(:id, :username, :password)
   end
 end

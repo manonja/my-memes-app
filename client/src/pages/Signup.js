@@ -1,34 +1,67 @@
 import React, { Component } from 'react';
+import API from '../API'
 
 
-const Signup = () => {
-    return (  
-        // <!-- Default form login -->
-        <div>
-              <form className="text-center border border-light p-5">
+class Signup extends Component {
+    state = {
+        username: '',
+        password: ''
+    }
 
-                <p className="h4 mb-4">Sign up</p>
+    handleSubmit = (e) => {
+        // API.signin(this.state)
+        e.preventDefault()
+        API.signup(this.state)
+            .then(data => {
+                if (data.error){
+                    alert('not working!')
+                }
+                else {
+                    // user is authentificated!
+                    this.props.signup(this.state.username)
+                    this.props.history.push('/signin')
+                }
+            })
+    }
 
-                <input type="username" id="defaultLoginFormEmail" className="form-control mb-4" placeholder="username" />
+    handleChange = e => {
+        e.preventDefault()
+        this.setState({ [e.target.name]: e.target.value})
+    }
 
-                <input type="password" id="defaultLoginFormPassword" className="form-control mb-4" placeholder="Password" />
-
-                <div className="d-flex justify-content-around">
-                    <div>
-                        <div className="custom-control custom-checkbox">
-                            <input type="checkbox" className="custom-control-input" id="defaultLoginFormRemember"/>
-                            <label className="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
-                        </div>
-                    </div>
-
-                </div>
-
-                <button className="btn btn-info btn-block my-4" type="submit">Sign up</button>
-
-                </form>
-        </div>
-      
-    );
+    render() {
+        return (  
+            // <!-- Default form login -->
+            <div>
+                  <form className="text-center border border-light p-5">
+    
+                    <p className="h4 mb-4">Sign up</p>
+    
+                    <input 
+                        name='username' 
+                        id="defaultSignup" 
+                        onChange={this.handleChange} 
+                        value={this.state.username} 
+                        className="form-control mb-4" 
+                        placeholder="username" 
+                    />
+                    <input 
+                        name='password' 
+                        id="defaultSignupPassword" 
+                        onChange={this.handleChange} 
+                        value={this.state.password} 
+                        className="form-control mb-4" 
+                        placeholder="Password" 
+                    />
+    
+                    <button onClick={(e) => this.handleSubmit(e)} className="btn btn-info btn-block my-4" type="submit">Sign up</button>
+    
+                    </form>
+            </div>
+          
+        );
+    }
+    
 } 
       
 
