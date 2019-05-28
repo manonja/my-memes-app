@@ -43,14 +43,6 @@ class App extends Component {
       })
   }
 
-  // signin = (username, token) => {
-  //   localStorage.setItem('token', token)
-  //   this.setState({ username}, () => {
-  //     // go to the user page with its memes
-  //   console.log(this.state)
-      
-  //   })
-  // }
   render() {
     const {username} = this.state
     const {signin, signup, signout} = this
@@ -59,8 +51,8 @@ class App extends Component {
         <div className="App">
           <Switch>
             <Route exact path='/' component={Home} />
-            <Route path='/signin' component={props => <Signin {...props} signin={signin}/>} />
-            <Route path='/signup' component={props => <Signup {...props} signup={signup}/>} />
+            <Route exact path='/signin' component={props => <Signin {...props} signin={signin}/>} />
+            <Route exact path='/signup' component={props => <Signup {...props} signup={signup}/>} />
             <Route exact path='/memes' component={props => <Memes {...props} username={username} signout={signout}/>}  />
             <Route component={() => <h1>Page not found.</h1>} />
           </Switch>

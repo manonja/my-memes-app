@@ -33,15 +33,13 @@ class UsersController < ApplicationController
     end
   end
 
-  def memes
+  def mymemes
     user = get_current_user
     if user
       render json: user.customised_memes
     else
       render json: {error: 'invalid user'}, status: 404
-
     end
-
   end 
 
   def index

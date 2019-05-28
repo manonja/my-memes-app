@@ -30,4 +30,29 @@
   to {
     transform: rotate(360deg);
   }
+
+}
+
+.img {
+  position: relative;
+  margin: auto;
+  float: left;
+  width: auto;
+  max-width:  400px;
+  height: auto;
+  max-height: 400px;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.memeCollection {
+ 
+    margin-top: 80px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-around;
+    
+  
 }
