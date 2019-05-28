@@ -5,8 +5,8 @@ import API from '../API'
 
 class Signin extends Component {
     state = { 
-        username: '',
-        password: ''
+        username: 'cool',
+        password: 'neat'
      }
 
     handleSubmit = (e) => {
