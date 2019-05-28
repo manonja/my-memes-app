@@ -1,4 +1,4 @@
-# my-memes-ap
+# my-memes-app
 explain what the app does
 
 ## Project background
