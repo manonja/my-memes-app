@@ -3,7 +3,7 @@ class API {
    static signinUrl = API.baseUrl + '/signin'
    static signupUrl = API.baseUrl + '/signup'
    static validateUrl = API.baseUrl + '/validate'
-   static memesUrl = API.baseUrl + '/memes'
+   static memesUrl = API.baseUrl + '/mymemes'
 
    static signin (user) {
     return fetch(this.signinUrl, {
