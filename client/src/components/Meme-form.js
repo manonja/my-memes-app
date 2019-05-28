@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 
+
 class MemeForm extends Component {
+
     
     render() { 
-        return ( <div>
+        return ( 
+                <div>
                 <form>
                 <label>
                     Box 1:
@@ -17,6 +20,7 @@ class MemeForm extends Component {
                 </form>
                 <img className='img' src={this.props.selectedMeme.url} alt='pic'></img>
             </div> 
+          
         )
     }
 }

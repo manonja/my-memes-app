@@ -42,6 +42,7 @@ class Memes extends Component {
 
     selectMeme = (selectedMeme) => {
         this.setState( {selectedMeme} )
+        
     }
 
 
