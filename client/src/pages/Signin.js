@@ -15,7 +15,7 @@ class Signin extends Component {
         API.signin(this.state)
             .then(data => {
                 if (data.error){
-                    alert('not working!')
+                    alert("not working!")
                 }
                 else {
                     // user is authentificated!
