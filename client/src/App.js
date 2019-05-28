@@ -7,6 +7,7 @@ import Signin from './pages/Signin'
 import Signup from './pages/Signup'
 import Memes from './pages/Memes';
 import API from './API';
+import Dashboard from './pages/Dashboard'
 
 
 class App extends Component {
@@ -53,7 +54,8 @@ class App extends Component {
             <Route exact path='/' component={Home} />
             <Route exact path='/signin' component={props => <Signin {...props} signin={signin}/>} />
             <Route exact path='/signup' component={props => <Signup {...props} signup={signup}/>} />
-            <Route exact path='/memes' component={props => <Memes {...props} username={username} signout={signout}/>}  />
+            <Route exact path='/dashboard' component={props => <Dashboard {...props} username={username} signout={signout}/>}/>
+            <Route exact path='/memes'  component={props => <Memes {...props} username={username} signout={signout}/>}/>
             <Route component={() => <h1>Page not found.</h1>} />
           </Switch>
         </div>

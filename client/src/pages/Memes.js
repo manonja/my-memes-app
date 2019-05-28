@@ -67,8 +67,11 @@ class Memes extends Component {
     render() { 
         return ( 
             <div>
+
                 <NavBar signout={this.props.signout}/>
                 {this.renderForm()}
+
+
             </div>
          );
     }
