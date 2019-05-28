@@ -7,7 +7,7 @@ class Meme extends Component {
         const {name, url} = this.props.meme
         return ( 
         
-            <div>
+            <div onClick={() => this.props.handleClick(this.props.meme)}>
                 <h3>{name}</h3>
                 <img className="img" src={url} alt={name}/>  
             </div>

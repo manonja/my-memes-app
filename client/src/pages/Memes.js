@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import NavBar from '../components/NavBar';
 import MemesCollection from '../components/memes-collection';
+import MemeForm from '../components/Meme-form'
 
 import API from '../API'
 
@@ -9,7 +10,8 @@ class Memes extends Component {
     state = { 
         username: '', 
         memes: [],
-        myMemes: []
+        myMemes: [], 
+        selectedMeme: null
      }
 
     //  componentDidMount() {
@@ -38,14 +40,35 @@ class Memes extends Component {
         this.getMemesFromApi()
     }
 
+    selectMeme = (selectedMeme) => {
+        this.setState( {selectedMeme} )
+    }
+
+
+    renderForm = () => {
+        if (this.state.selectedMeme) {
+        return <div>
+        <MemeForm selectedMeme={this.state.selectedMeme}/> 
+        <MemesCollection 
+            username={this.state.username}
+            memes={this.state.memes} 
+            handleClick={this.selectMeme}
+        />
+        </div>
+        } else {
+            return <MemesCollection 
+            username={this.state.username}
+            memes={this.state.memes} 
+            handleClick={this.selectMeme}
+        />
+        }
+    }
+
     render() { 
         return ( 
             <div>
                 <NavBar signout={this.props.signout}/>
-                <MemesCollection 
-                    username={this.state.username}
-                    memes={this.state.memes} 
-                />
+                {this.renderForm()}
             </div>
          );
     }

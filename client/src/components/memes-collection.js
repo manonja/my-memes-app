@@ -9,7 +9,8 @@ class MemesCollection extends Component {
       const meme = memes.map(meme => (
         <Meme 
           key={meme.id} 
-          meme={meme} 
+          meme={meme}
+          handleClick={this.props.handleClick}
         />))
          
         return ( 
