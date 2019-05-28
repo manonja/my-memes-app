@@ -7,7 +7,7 @@ class API {
 
    static signin (user) {
     return fetch(this.signinUrl, {
-        method: 'POST',
+        method: "POST",
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(user)
     }).then(resp => resp.json())
