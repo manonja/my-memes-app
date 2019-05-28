@@ -41,7 +41,9 @@ class Memes extends Component {
     render() { 
         return ( 
             <div>
-                <NavBar signout={this.props.signout}/>
+                <NavBar 
+                    signout={this.props.signout}
+                />
                 <MemesCollection 
                     username={this.state.username}
                     memes={this.state.memes} 

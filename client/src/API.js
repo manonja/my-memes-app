@@ -3,7 +3,7 @@ class API {
    static signinUrl = API.baseUrl + '/signin'
    static signupUrl = API.baseUrl + '/signup'
    static validateUrl = API.baseUrl + '/validate'
-   static memesUrl = API.baseUrl + '/mymemes'
+   static dashboardUrl = API.baseUrl + '/dashboard'
 
    static signin (user) {
     return fetch(this.signinUrl, {
@@ -29,7 +29,7 @@ class API {
     }).then(resp => resp.json())
    }
 
-   static getMemes () {
+   static getDashboard () {
        return fetch(this.memesUrl, {
            headers: {Authorization: localStorage.getItem('token')}
        }).then(resp => resp.json)
