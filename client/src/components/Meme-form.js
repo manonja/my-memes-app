@@ -7,10 +7,9 @@ import { Modal, ModalHeader, ModalBody, FormGroup, Label, NavbarBrand } from 're
 class MemeForm extends Component {
   
     
-    
     render() { 
         const {modalIsOpen} = this.props
-        const {image} = this.props.selectedMeme.url
+        const {image} = this.props.selectedMeme
         const base_img = new Image()
         base_img.src = image
 
@@ -27,11 +26,12 @@ class MemeForm extends Component {
                             xmlns="http://www.w3.org/2000/svg"
                             xmlnsXlink="http://www.w3.org/1999/xlink">
                             <image
-                            // ref={el => {this.imageRef = el}}
-                            xlinkHref={this.props.currentImgBase64}
+                            ref={el => {this.imageRef = el}}
+                            xlinkHref={this.props.selectedMeme.url}
                             height='400'
                             width='400'
                             />
+                           
                         </svg>
                         <div className="meme-form">
                         <FormGroup>

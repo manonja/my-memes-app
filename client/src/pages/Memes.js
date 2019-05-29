@@ -60,21 +60,18 @@ class Memes extends Component {
         const base64 = this.getBase64Image(base_image)
         this.setState({
             modalIsOpen: !this.state.modalIsOpen, 
-            selectedMeme,
+            selectedMeme: selectedMeme,
             currentImgBase64: base64
         })
-
     }
 
     getBase64Image = (img) => {
         let canvas = document.createElement("canvas");
-        canvas.width = img.width;
-        canvas.height = img.height;
+        canvas.width = 400;
+        canvas.height = 400;
         let ctx = canvas.getContext("2d");
         ctx.drawImage(img, 0, 0);
-        debugger
-        let dataURL = canvas.toDataURL();
-        // debugger
+        let dataURL = canvas.toDataURL('image/jpeg', 0.5);
         return dataURL;
     }
 
