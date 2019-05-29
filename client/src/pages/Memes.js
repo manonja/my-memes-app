@@ -64,6 +64,12 @@ class Memes extends Component {
         return dataURL;
     }
 
+    
+
+    // handleMemeCreation = () => {
+
+    // }
+
     renderForm = () => {
         if (this.state.selectedMeme) {
         return <div>
