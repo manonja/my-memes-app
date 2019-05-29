@@ -46,7 +46,9 @@ class MemeForm extends Component {
                         </div>
                     </ModalBody>
                 </Modal>
+
             </div> 
+          
         )
     }
 }
