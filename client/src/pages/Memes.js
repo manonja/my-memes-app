@@ -5,16 +5,6 @@ import MemeForm from '../components/Meme-form'
 
 import API from '../API'
 
-const initialState = {
-    toptext: "",
-    bottomtext: "",
-    isTopDragging: false,
-    isBottomDragging: false,
-    topY: '10%',
-    bottomY: '90%',
-    topX: '50%',
-    bottomX: '90%'
-}
 class Memes extends Component {
     state = { 
         username: '', 
@@ -22,8 +12,7 @@ class Memes extends Component {
         myMemes: [], 
         selectedMeme: null,
         modalIsOpen: false,
-        currentImgBase64: null,
-        ...initialState
+        currentImgBase64: null
      }
 
     //  componentDidMount() {
@@ -60,30 +49,26 @@ class Memes extends Component {
         const base64 = this.getBase64Image(base_image)
         this.setState({
             modalIsOpen: !this.state.modalIsOpen, 
-            selectedMeme,
+            selectedMeme: selectedMeme,
             currentImgBase64: base64
         })
-
     }
 
     getBase64Image = (img) => {
         let canvas = document.createElement("canvas");
-        canvas.width = img.width;
-        canvas.height = img.height;
+        canvas.width = 400;
+        canvas.height = 400;
         let ctx = canvas.getContext("2d");
         ctx.drawImage(img, 0, 0);
-        debugger
-        let dataURL = canvas.toDataURL();
-        // debugger
+        let dataURL = canvas.toDataURL('image/jpeg', 0.5);
         return dataURL;
     }
 
-    changeText = (event) => {
-        this.setState({
-          [event.currentTarget.name]: event.currentTarget.value
-        });
-      }
+    
 
+    // handleMemeCreation = () => {
+
+    // }
 
     renderForm = () => {
         if (this.state.selectedMeme) {
@@ -93,6 +78,7 @@ class Memes extends Component {
             modalIsOpen={this.state.modalIsOpen}
             currentImgBase64={this.state.currentImgBase64}
             changeText={this.changeText}
+            initialState={this.state.initialState}
         /> 
         <MemesCollection 
             username={this.state.username}
