@@ -53,6 +53,12 @@
     flex-wrap: wrap;
     align-items: flex-start;
     justify-content: space-around;
-    
   
+}
+
+.formStyling {
+  width: 99%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
 }

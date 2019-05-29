@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+//import { Modal, ModalHeader, ModalBody, FormGroup, Label, NavbarBrand } from 'reactstrap';
 
 class MemeForm extends Component {
     
     render() { 
-        return ( <div>
+        return ( <div className='formStyling'>
                 <form>
                 <label>
                     Box 1:
