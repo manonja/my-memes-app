@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   post '/signup', to: 'users#signup'
   get '/validate', to: 'users#validate'
   get '/dashboard', to: 'users#dashboard'
+  post '/memes', to: 'customised_memes#memes'
 
 end

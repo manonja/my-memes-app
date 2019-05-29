@@ -7,27 +7,11 @@ import API from '../API'
 
 class Memes extends Component {
     state = { 
-        username: '', 
         memes: [],
         selectedMeme: null,
         modalIsOpen: false,
         currentImgBase64: null
      }
-
-    //  componentDidMount() {
-    //     if (!this.props.username) {
-    //         this.props.history.push('/signin')
-    //       } else {
-    //         API.getDashboard()
-    //           .then(data => {
-    //             if (data.error) {
-    //               alert(data.error)
-    //             } else {
-    //               this.setState({ memes: data })
-    //             }
-    //           })
-    //       }
-    // }
 
     getMemesFromApi = () => {
         return fetch('https://api.imgflip.com/get_memes')
@@ -68,6 +52,7 @@ class Memes extends Component {
         if (this.state.selectedMeme) {
         return <div>
         <MemeForm 
+            username={this.props.username}
             selectedMeme={this.state.selectedMeme}
             modalIsOpen={this.state.modalIsOpen}
             currentImgBase64={this.state.currentImgBase64}
@@ -91,7 +76,7 @@ class Memes extends Component {
     render() { 
         return ( 
             <div>
-                
+
                 <NavBar signout={this.props.signout}/>
                 {this.renderForm()}
 

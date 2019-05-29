@@ -45,6 +45,14 @@ class App extends Component {
         }
         else {
           this.signin(data.username, localStorage.getItem('token'))
+          // API.getDashboard()
+          //     .then(data => {
+          //       if (data.error) {
+          //         alert(data.error)
+          //       } else {
+          //         this.setState({ myMemes: data })
+          //       }
+          //     })
         }
       })
   }

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 
 import Meme from '../components/Meme'
-
 import NavBar from '../components/NavBar'
 
+
 class Dashboard extends Component {
+
   
     render() { 
         const {myMemes} = this.props

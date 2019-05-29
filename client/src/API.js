@@ -4,6 +4,7 @@ class API {
    static signupUrl = API.baseUrl + '/signup'
    static validateUrl = API.baseUrl + '/validate'
    static dashboardUrl = API.baseUrl + '/dashboard'
+   static myMemes = API.baseUrl + '/customised_memes'
 
    static signin (user) {
     return fetch(this.signinUrl, {
@@ -30,10 +31,18 @@ class API {
    }
 
    static getDashboard () {
-       return fetch(this.memesUrl, {
+       return fetch(this.dashboardUrl, {
            headers: {Authorization: localStorage.getItem('token')}
        }).then(resp => resp.json)
    }
+
+   static createMeme (myMeme) {
+       return fetch(this.myMemes, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(myMeme)
+      }).then(resp => resp.json())
+    }
 }
 
 export default API
