@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import { Modal, ModalHeader, ModalBody, FormGroup, Label, NavbarBrand } from 'reactstrap';
 
+import {saveSvgAsPng} from 'save-svg-as-png';
 
 
 class MemeForm extends Component {
@@ -80,34 +81,42 @@ class MemeForm extends Component {
     //     }
 
     handleMemeCreation = () => {
-        // const {name, url} =  this.props.selectedMeme
-        
-        // const newMeme = {
-        //     name,
-        //     url,
-        //     meme
-        // }
-
-        // console.log(newMeme.svg)
+        const {name} =  this.props.selectedMeme
+ 
         const svg = this.svgRef;
         let svgData = new XMLSerializer().serializeToString(svg);
-        const canvas = document.createElement("canvas");
-        canvas.setAttribute("id", "canvas");
+        const canvas = document.createElement('canvas');
+        canvas.setAttribute('id', 'canvas');
         const svgSize = svg.getBoundingClientRect();
         canvas.width = svgSize.width;
         canvas.height = svgSize.height;
-        const img = document.createElement("img");
-        img.setAttribute("src", "data:image/svg+xml," + encodeURIComponent(svgData));
+        const img = document.createElement('img');
+        img.setAttribute('src', 'data:image/svg+xml,' + encodeURIComponent(svgData));
+        // const myImg = saveSvgAsPng(document.getElementById('svg_ref'), "svg_ref.png");
+        // console.log(myImg)
+
+
+        const myNewMemeUrl = img.src
+        console.log(img)
+        // data:image/svg+xml,<svg%20id%3D"svg_ref"%20width%3D"400"%20height%3D"400"%20xmlns%3D"http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg"%20xmlns%3Axlink%3D"http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink"><image%20xmlns%3Axlink%3D"http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink"%20xlink%3Ahref%3D"https%3A%2F%2Fi.imgflip.com%2F1ur9b0.jpg"%20height%3D"400"%20width%3D"400"%2F><text%20x%3D"25%25"%20y%3D"10%25"%20dominant-baseline%3D"middle"%20text-anchor%3D"middle"%20style%3D"font-family%3A%20Impact%3B%20font-size%3A%2050px%3B%20text-transform%3A%20uppercase%3B%20fill%3A%20red%3B%20stroke%3A%20blue%3B%20user-select%3A%20none%3B%20z-index%3A%201%3B">qwds<%2Ftext><text%20x%3D"20%25"%20y%3D"60%25"%20dominant-baseline%3D"middle"%20text-anchor%3D"middle"%20style%3D"font-family%3A%20Impact%3B%20font-size%3A%2050px%3B%20text-transform%3A%20uppercase%3B%20fill%3A%20red%3B%20stroke%3A%20blue%3B%20user-select%3A%20none%3B">qwdas<%2Ftext><%2Fsvg>
+        console.log(myNewMemeUrl)
+        const myMeme = {
+           name: name,
+           url: myNewMemeUrl
+        }
+
+        this.props.addToMyMemes(myMeme)  
+
         img.onload = function() {
-          canvas.getContext("2d").drawImage(img, 0, 0);
-          const canvasdata = canvas.toDataURL("image/png");
-          const a = document.createElement("a");
-          a.download = "meme.png";
+          canvas.getContext('2d').drawImage(img, 0, 0);
+          const canvasdata = canvas.toDataURL('image/png');
+          const a = document.createElement('a');
+          a.download = 'meme.png';
           a.href = canvasdata;
           document.body.appendChild(a);
           a.click();
         };
-
+ 
     }
 
     
@@ -124,14 +133,12 @@ class MemeForm extends Component {
             fill: "red",
             stroke: "blue",
             userSelect: "none"
-          }
-        
-      
+          }  
 
         return ( 
             <div>
                 <Modal className='meme-gen-modal' isOpen={modalIsOpen}>
-                    <ModalHeader >Create your meme</ModalHeader>
+                    <ModalHeader cssModule={{'modal-title': 'w-100 text-center'}}>Create your meme</ModalHeader>
                     <ModalBody>
                         <svg 
                             id="svg_ref"
@@ -179,8 +186,8 @@ class MemeForm extends Component {
                         <FormGroup>
                             <Label for="bottomtext">Bottom Text</Label>
                             <input className="form-control" type="text" name="bottomtext" id="bottomtext" placeholder="Add text to the bottom" onChange={this.changeText} />
-                        </FormGroup>
-                        <button onClick={this.handleMemeCreation} className="btn btn-outline-black">Create Meme!</button>
+                        </FormGroup >
+                        <button className="text-center" onClick={this.handleMemeCreation} className="btn btn-outline-black">Create Meme!</button>
                         </div>
                     </ModalBody>
                 </Modal>

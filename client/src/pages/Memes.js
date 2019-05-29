@@ -9,7 +9,6 @@ class Memes extends Component {
     state = { 
         username: '', 
         memes: [],
-        myMemes: [], 
         selectedMeme: null,
         modalIsOpen: false,
         currentImgBase64: null
@@ -60,16 +59,11 @@ class Memes extends Component {
         canvas.height = 400;
         let ctx = canvas.getContext("2d");
         ctx.drawImage(img, 0, 0);
-        let dataURL = canvas.toDataURL('image/jpeg', 0.5);
+        let dataURL = canvas.toDataURL('image/png', 0.5);
         return dataURL;
     }
 
     
-
-    // handleMemeCreation = () => {
-
-    // }
-
     renderForm = () => {
         if (this.state.selectedMeme) {
         return <div>
@@ -77,8 +71,7 @@ class Memes extends Component {
             selectedMeme={this.state.selectedMeme}
             modalIsOpen={this.state.modalIsOpen}
             currentImgBase64={this.state.currentImgBase64}
-            changeText={this.changeText}
-            initialState={this.state.initialState}
+            addToMyMemes={this.props.addToMyMemes}
         /> 
         <MemesCollection 
             username={this.state.username}
@@ -98,10 +91,9 @@ class Memes extends Component {
     render() { 
         return ( 
             <div>
-
+                
                 <NavBar signout={this.props.signout}/>
                 {this.renderForm()}
-
 
             </div>
          );
