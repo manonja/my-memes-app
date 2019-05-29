@@ -5,16 +5,6 @@ import MemeForm from '../components/Meme-form'
 
 import API from '../API'
 
-const initialState = {
-    toptext: "",
-    bottomtext: "",
-    isTopDragging: false,
-    isBottomDragging: false,
-    topY: '10%',
-    bottomY: '90%',
-    topX: '50%',
-    bottomX: '90%'
-}
 class Memes extends Component {
     state = { 
         username: '', 
@@ -22,8 +12,7 @@ class Memes extends Component {
         myMemes: [], 
         selectedMeme: null,
         modalIsOpen: false,
-        currentImgBase64: null,
-        ...initialState
+        currentImgBase64: null
      }
 
     //  componentDidMount() {
@@ -75,13 +64,6 @@ class Memes extends Component {
         return dataURL;
     }
 
-    changeText = (event) => {
-        this.setState({
-          [event.currentTarget.name]: event.currentTarget.value
-        });
-      }
-
-
     renderForm = () => {
         if (this.state.selectedMeme) {
         return <div>
@@ -90,6 +72,7 @@ class Memes extends Component {
             modalIsOpen={this.state.modalIsOpen}
             currentImgBase64={this.state.currentImgBase64}
             changeText={this.changeText}
+            initialState={this.state.initialState}
         /> 
         <MemesCollection 
             username={this.state.username}
