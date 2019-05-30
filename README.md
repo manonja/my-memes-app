@@ -1,5 +1,5 @@
 # my-memes-app
-explain what the app does
+Create memes and save them to your account.
 
 ## Project background
 1. Use a Rails API backend 
