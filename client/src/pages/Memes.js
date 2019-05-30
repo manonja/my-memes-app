@@ -16,7 +16,7 @@ class Memes extends Component {
     getMemesFromApi = () => {
         return fetch('https://api.imgflip.com/get_memes')
         .then(resp => resp.json())
-        .then(data => this.setState({memes: data.data.memes}))
+        .then(data => this.setState({memes: data.data.memes.filter(meme => meme.box_count <= 2)}))
     
     }
 
@@ -74,6 +74,7 @@ class Memes extends Component {
     }
 
     render() { 
+        console.log(this.state)
         return ( 
             <div>
 

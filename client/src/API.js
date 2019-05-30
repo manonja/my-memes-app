@@ -33,13 +33,14 @@ class API {
    static getDashboard () {
        return fetch(this.dashboardUrl, {
            headers: {Authorization: localStorage.getItem('token')}
-       }).then(resp => resp.json)
+       }).then(resp => resp.json())
    }
 
    static createMeme (myMeme) {
        return fetch(this.myMemes, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json",
+        Authorization: localStorage.getItem('token') },
         body: JSON.stringify(myMeme)
       }).then(resp => resp.json())
     }

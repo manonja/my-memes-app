@@ -12,8 +12,8 @@ import Dashboard from './pages/Dashboard'
 
 class App extends Component {
   state = {
-    myMemes: [],
-    username: ''
+    username: '', 
+    myMemes: []
   }
 
   signin = (username, token) => {
@@ -37,6 +37,12 @@ class App extends Component {
     this.setState({myMemes: [...this.state.myMemes, newMeme]})
   }
 
+  addManyToMyMemes = (newMemes) => {
+    this.setState({myMemes: [...this.state.myMemes, ...newMemes]})
+  }
+   
+
+
   componentDidMount() {
     API.validate()
       .then(data => {
@@ -45,21 +51,23 @@ class App extends Component {
         }
         else {
           this.signin(data.username, localStorage.getItem('token'))
-          // API.getDashboard()
-          //     .then(data => {
-          //       if (data.error) {
-          //         alert(data.error)
-          //       } else {
-          //         this.setState({ myMemes: data })
-          //       }
-          //     })
+        
         }
       })
+      API.getDashboard()
+      .then(data => {
+          if(data.error) {
+              alert("You don't have any memes!")
+          } else {
+              this.addManyToMyMemes(data)
+          }
+      })
+  
   }
 
   render() {
     const {username, myMemes} = this.state
-    const {signin, signup, signout} = this
+    const {signin, signup, signout, addManyToMyMemes} = this
     return (
       <div className="App">
         <div className="App">
@@ -67,7 +75,7 @@ class App extends Component {
             <Route exact path='/' component={Home} />
             <Route exact path='/signin' component={props => <Signin {...props} signin={signin}/>} />
             <Route exact path='/signup' component={props => <Signup {...props} signup={signup}/>} />
-            <Route exact path='/dashboard' component={props => <Dashboard {...props} username={username} signout={signout} myMemes={myMemes}/>}/>
+            <Route exact path='/dashboard' component={props => <Dashboard {...props} username={username} signout={signout} myMemes={myMemes} addManyToMyMemes={addManyToMyMemes}/>}/>
             <Route exact path='/memes'  component={props => <Memes {...props} username={username} signout={signout} addToMyMemes={this.addToMyMemes}/>}/>
             <Route component={() => <h1>Page not found.</h1>} />
           </Switch>

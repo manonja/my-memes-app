@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
 
-import { Modal, ModalHeader, ModalBody, FormGroup, Label, NavbarBrand } from 'reactstrap';
+import { Modal, ModalHeader, ModalBody, FormGroup, Label } from 'reactstrap';
 
 import API from '../API'
 
-import {saveSvgAsPng} from 'save-svg-as-png';
-import {svgAsDataUri} from 'save-svg-as-png';
-
-
-
+import {saveSvgAsPng, svgAsDataUri} from 'save-svg-as-png';
 
 class MemeForm extends Component {
     state = {
@@ -82,28 +78,22 @@ class MemeForm extends Component {
 
     handleMemeCreation = async () => {
         const {name} =  this.props.selectedMeme
-        const {username} = this.props
  
-        let svgTest = document.getElementById('svg_ref')
-        const myImg = saveSvgAsPng(svgTest, 'test_test.png')
-        const myImgUri = await svgAsDataUri(svgTest)
+        let svg = document.getElementById('svg_ref')
+        saveSvgAsPng(svg, 'test_test.png')
+        const myImgUri = await svgAsDataUri(svg)
 
-        // console.log(myImg.then(resp => resp.json().then(data => console.log(data))))
         const myMeme = {
             name: name,
-            url: myImgUri,
-            user_id: username.id
-         }
+            url: myImgUri
+        }
 
-         console.log(myMeme)
+        console.log(myMeme)
         // POST request 
-        // API.createMeme(myMeme)
-        //     .then(myMeme => this.props.addToMyMemes(myMeme)); 
-            
-        this.props.addToMyMemes(myMeme)
+        API.createMeme(myMeme)
+            .then(myMeme => this.props.addToMyMemes(myMeme));       
     }
-
-    
+   
     render() { 
         const {modalIsOpen} = this.props
         const {image} = this.props.selectedMeme
@@ -112,10 +102,10 @@ class MemeForm extends Component {
 
         const textStyle = {
             fontFamily: "Impact",
-            fontSize: "50px",
+            fontSize: "30px",
             textTransform: "uppercase",
-            fill: "red",
-            stroke: "blue",
+            fill: "white",
+            stroke: "black",
             userSelect: "none"
           }  
 

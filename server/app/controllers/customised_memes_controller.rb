@@ -1,16 +1,6 @@
 class CustomisedMemesController < ApplicationController
   
-  
-  # def memes 
-  #   customisedMeme = CustomisedMeme.create(customisedMeme_params)
-  #   if customisedMeme
-  #     render json: customisedMeme
-  #   else
-  #     render json: {error: "Meme could not be created"}, status: 400
-  #   end
-  # end
-  
-  def index
+    def index
     customisedMemes = CustomisedMeme.all
     render json: customisedMemes
   end
@@ -20,6 +10,7 @@ class CustomisedMemesController < ApplicationController
   end
 
   def show
+    
     customisedMeme = CustomisedMeme.find_by(id: params[:id])
     if  customisedMeme
       render json:  customisedMeme
@@ -29,8 +20,10 @@ class CustomisedMemesController < ApplicationController
   end
 
   def create
-    customisedMeme = CustomisedMeme.create(customisedMeme_params)
-    if customisedMeme
+    user = get_current_user
+    customisedMeme = CustomisedMeme.new(customisedMeme_params)
+    customisedMeme.user = user
+    if customisedMeme.save
       render json: customisedMeme
     else
       render json: {error: "Meme could not be created"}, status: 400
@@ -50,7 +43,7 @@ class CustomisedMemesController < ApplicationController
   private 
   
   def customisedMeme_params 
-    params.require(:customised_meme).permit(:name, :url, :user_id)
+    params.require(:customised_meme).permit(:name, :url)
 
   end
 end
