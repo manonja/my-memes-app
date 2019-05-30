@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 
 class CustomisedMeme extends Component {
 
-  
     render() { 
         const {name, url} = this.props.meme
         return (   
