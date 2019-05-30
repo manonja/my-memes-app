@@ -15,6 +15,7 @@ Fork and clone the project https://github.com/manonja/my-memes-app
 1. In your terminal, go to the client repository `cd client` 
 - run `npm install` 
 - `npm install --save mdbreact` for the material design bootstrap library
+- `npm install save-svg-as-png` to save the meme as a png file
 - `npm start`
 
 2. Go to the server repository `cd server`
@@ -23,7 +24,7 @@ Fork and clone the project https://github.com/manonja/my-memes-app
 - `rails s -p 3001`
 
 ## Uses
-If you have an account, just login. If you don't, create one! 
+If you have an account, just login. If you don't, create one.
 
 
 ## MVP and stretch goals
