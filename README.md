@@ -1,13 +1,12 @@
 # my-memes-app
-Create memes and save them to your account.
+Browse images, pick up one, create a meme, save it to your account. 
 
 ## Project background
 1. Use a Rails API backend 
 2. Use a React frontend
-3. Have at least three resources on the backend
-4. Has a full CRUD actions.
-5. Has at least two different client-side routes 
-6. Has a Authentication/authorization part.
+3. Use two models in the backend
+4. Has a full CRUD actions
+5. Has a Authentication/authorization part
 
 ## Getting started
 Fork and clone the project https://github.com/manonja/my-memes-app 
@@ -25,11 +24,11 @@ Fork and clone the project https://github.com/manonja/my-memes-app
 - `rails s -p 3001`
 
 ## Uses
-If you have an account, just login. If you don't, create one.
+If you have an account, just login. If you don't, sigup!
+Create memes and save them to your account.
 
+## MVP 
 
-## MVP and stretch goals
-### MVP
 
 ## Authors
 Thomas Edwards - https://github.com/tomo10
