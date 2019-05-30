@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 
-import Meme from '../components/Meme'
+import CustomisedMeme from '../components/CustomisedMeme'
 import NavBar from '../components/NavBar'
 
 
 class Dashboard extends Component {
 
-  
     render() { 
         const {myMemes} = this.props
+        // debugger
+
         const meme = myMemes.map(meme => (
-        <Meme 
+        <CustomisedMeme 
             key={meme.id} 
             meme={meme}
             // handleClick={this.props.handleClick}
