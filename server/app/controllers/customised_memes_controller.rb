@@ -1,4 +1,15 @@
 class CustomisedMemesController < ApplicationController
+  
+  
+  # def memes 
+  #   customisedMeme = CustomisedMeme.create(customisedMeme_params)
+  #   if customisedMeme
+  #     render json: customisedMeme
+  #   else
+  #     render json: {error: "Meme could not be created"}, status: 400
+  #   end
+  # end
+  
   def index
     customisedMemes = CustomisedMeme.all
     render json: customisedMemes

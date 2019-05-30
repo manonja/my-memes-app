@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 
 import { Modal, ModalHeader, ModalBody, FormGroup, Label, NavbarBrand } from 'reactstrap';
 
+import API from '../API'
+
+import {saveSvgAsPng} from 'save-svg-as-png';
+import {svgAsDataUri} from 'save-svg-as-png';
+
+
 
 
 class MemeForm extends Component {
@@ -74,40 +80,27 @@ class MemeForm extends Component {
         });
     }
 
-    // svgDataURL = (svg) => {
-    //       var svgAsXML = (new XMLSerializer).serializeToString(svg);
-    //       return "data:image/svg+xml," + encodeURIComponent(svgAsXML);
-    //     }
+    handleMemeCreation = async () => {
+        const {name} =  this.props.selectedMeme
+        const {username} = this.props
+ 
+        let svgTest = document.getElementById('svg_ref')
+        const myImg = saveSvgAsPng(svgTest, 'test_test.png')
+        const myImgUri = await svgAsDataUri(svgTest)
 
-    handleMemeCreation = () => {
-        // const {name, url} =  this.props.selectedMeme
-        
-        // const newMeme = {
-        //     name,
-        //     url,
-        //     meme
-        // }
+        // console.log(myImg.then(resp => resp.json().then(data => console.log(data))))
+        const myMeme = {
+            name: name,
+            url: myImgUri,
+            user_id: username.id
+         }
 
-        // console.log(newMeme.svg)
-        const svg = this.svgRef;
-        let svgData = new XMLSerializer().serializeToString(svg);
-        const canvas = document.createElement("canvas");
-        canvas.setAttribute("id", "canvas");
-        const svgSize = svg.getBoundingClientRect();
-        canvas.width = svgSize.width;
-        canvas.height = svgSize.height;
-        const img = document.createElement("img");
-        img.setAttribute("src", "data:image/svg+xml," + encodeURIComponent(svgData));
-        img.onload = function() {
-          canvas.getContext("2d").drawImage(img, 0, 0);
-          const canvasdata = canvas.toDataURL("image/png");
-          const a = document.createElement("a");
-          a.download = "meme.png";
-          a.href = canvasdata;
-          document.body.appendChild(a);
-          a.click();
-        };
-
+         console.log(myMeme)
+        // POST request 
+        // API.createMeme(myMeme)
+        //     .then(myMeme => this.props.addToMyMemes(myMeme)); 
+            
+        this.props.addToMyMemes(myMeme)
     }
 
     
@@ -124,14 +117,12 @@ class MemeForm extends Component {
             fill: "red",
             stroke: "blue",
             userSelect: "none"
-          }
-        
-      
+          }  
 
         return ( 
             <div>
                 <Modal className='meme-gen-modal' isOpen={modalIsOpen}>
-                    <ModalHeader >Create your meme</ModalHeader>
+                    <ModalHeader cssModule={{'modal-title': 'w-100 text-center'}}>Create your meme</ModalHeader>
                     <ModalBody>
                         <svg 
                             id="svg_ref"
@@ -179,8 +170,8 @@ class MemeForm extends Component {
                         <FormGroup>
                             <Label for="bottomtext">Bottom Text</Label>
                             <input className="form-control" type="text" name="bottomtext" id="bottomtext" placeholder="Add text to the bottom" onChange={this.changeText} />
-                        </FormGroup>
-                        <button onClick={this.handleMemeCreation} className="btn btn-outline-black">Create Meme!</button>
+                        </FormGroup >
+                        <button className="text-center" onClick={this.handleMemeCreation} className="btn btn-outline-black">Create Meme!</button>
                         </div>
                     </ModalBody>
                 </Modal>

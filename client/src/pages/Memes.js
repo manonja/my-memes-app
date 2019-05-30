@@ -7,28 +7,11 @@ import API from '../API'
 
 class Memes extends Component {
     state = { 
-        username: '', 
         memes: [],
-        myMemes: [], 
         selectedMeme: null,
         modalIsOpen: false,
         currentImgBase64: null
      }
-
-    //  componentDidMount() {
-    //     if (!this.props.username) {
-    //         this.props.history.push('/signin')
-    //       } else {
-    //         API.getDashboard()
-    //           .then(data => {
-    //             if (data.error) {
-    //               alert(data.error)
-    //             } else {
-    //               this.setState({ memes: data })
-    //             }
-    //           })
-    //       }
-    // }
 
     getMemesFromApi = () => {
         return fetch('https://api.imgflip.com/get_memes')
@@ -60,25 +43,20 @@ class Memes extends Component {
         canvas.height = 400;
         let ctx = canvas.getContext("2d");
         ctx.drawImage(img, 0, 0);
-        let dataURL = canvas.toDataURL('image/jpeg', 0.5);
+        let dataURL = canvas.toDataURL('image/png', 0.5);
         return dataURL;
     }
 
     
-
-    // handleMemeCreation = () => {
-
-    // }
-
     renderForm = () => {
         if (this.state.selectedMeme) {
         return <div>
         <MemeForm 
+            username={this.props.username}
             selectedMeme={this.state.selectedMeme}
             modalIsOpen={this.state.modalIsOpen}
             currentImgBase64={this.state.currentImgBase64}
-            changeText={this.changeText}
-            initialState={this.state.initialState}
+            addToMyMemes={this.props.addToMyMemes}
         /> 
         <MemesCollection 
             username={this.state.username}
@@ -101,7 +79,6 @@ class Memes extends Component {
 
                 <NavBar signout={this.props.signout}/>
                 {this.renderForm()}
-
 
             </div>
          );

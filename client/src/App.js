@@ -12,6 +12,7 @@ import Dashboard from './pages/Dashboard'
 
 class App extends Component {
   state = {
+    myMemes: [],
     username: ''
   }
 
@@ -32,6 +33,10 @@ class App extends Component {
     this.props.history.push('/')
   }
 
+  addToMyMemes = (newMeme) => {
+    this.setState({myMemes: [...this.state.myMemes, newMeme]})
+  }
+
   componentDidMount() {
     API.validate()
       .then(data => {
@@ -40,12 +45,20 @@ class App extends Component {
         }
         else {
           this.signin(data.username, localStorage.getItem('token'))
+          // API.getDashboard()
+          //     .then(data => {
+          //       if (data.error) {
+          //         alert(data.error)
+          //       } else {
+          //         this.setState({ myMemes: data })
+          //       }
+          //     })
         }
       })
   }
 
   render() {
-    const {username} = this.state
+    const {username, myMemes} = this.state
     const {signin, signup, signout} = this
     return (
       <div className="App">
@@ -54,8 +67,8 @@ class App extends Component {
             <Route exact path='/' component={Home} />
             <Route exact path='/signin' component={props => <Signin {...props} signin={signin}/>} />
             <Route exact path='/signup' component={props => <Signup {...props} signup={signup}/>} />
-            <Route exact path='/dashboard' component={props => <Dashboard {...props} username={username} signout={signout}/>}/>
-            <Route exact path='/memes'  component={props => <Memes {...props} username={username} signout={signout}/>}/>
+            <Route exact path='/dashboard' component={props => <Dashboard {...props} username={username} signout={signout} myMemes={myMemes}/>}/>
+            <Route exact path='/memes'  component={props => <Memes {...props} username={username} signout={signout} addToMyMemes={this.addToMyMemes}/>}/>
             <Route component={() => <h1>Page not found.</h1>} />
           </Switch>
         </div>
