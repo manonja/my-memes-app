@@ -15,7 +15,8 @@ Fork and clone the project https://github.com/manonja/my-memes-app
 1. In your terminal, go to the client repository `cd client` 
 - run `npm install` 
 - `npm install --save mdbreact` for the material design bootstrap library
-- `npm install save-svg-as-png` to save the meme as a png file
+- `npm install --save reactstrap react react-dom` for reactstrap component
+- `npm install --save-svg-as-png` to save the meme as a png file
 - `npm start`
 
 2. Go to the server repository `cd server`
