@@ -14,7 +14,10 @@ class MemesCollection extends Component {
         />))
          
         return ( 
-            <div className= 'memeCollection'> {meme} </div>
+
+            <div className= 'memeCollection'> 
+            {meme} 
+            </div>
            
          );
     }
