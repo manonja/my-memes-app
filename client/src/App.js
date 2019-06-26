@@ -41,8 +41,6 @@ class App extends Component {
     this.setState({myMemes: [...this.state.myMemes, ...newMemes]})
   }
    
-
-
   componentDidMount() {
     API.validate()
       .then(data => {
@@ -51,18 +49,17 @@ class App extends Component {
         }
         else {
           this.signin(data.username, localStorage.getItem('token'))
+          API.getDashboard()
+          .then(data => {
+              if(data.error) {
+                  alert("You don't have any memes!")
+              } else {
+                  this.addManyToMyMemes(data)
+              }
+        })
         
-        }
-      })
-      API.getDashboard()
-      .then(data => {
-          if(data.error) {
-              alert("You don't have any memes!")
-          } else {
-              this.addManyToMyMemes(data)
-          }
-      })
-  
+      }
+    })
   }
 
   render() {

@@ -3,8 +3,6 @@ import NavBar from '../components/NavBar';
 import MemesCollection from '../components/memes-collection';
 import MemeForm from '../components/Meme-form'
 
-import API from '../API'
-
 class Memes extends Component {
     state = { 
         memes: [],
@@ -74,7 +72,6 @@ class Memes extends Component {
     }
 
     render() { 
-        console.log(this.state)
         return ( 
             <div>
 
