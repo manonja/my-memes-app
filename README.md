@@ -13,6 +13,7 @@ Browse images, pick up one, create a meme, download it and save it to your profi
 - use of svg format to create a new meme, and `svg-as-png` library to save the meme as a png file.
 - backend built with Ruby on Rails with two endpoints (one for the users, one for the customized memes).
 - use of Imgflip API to get images templates. 
+- user JWT for the Authentication part.
 
 ## Getting started
 Fork and clone the project https://github.com/manonja/my-memes-app 
