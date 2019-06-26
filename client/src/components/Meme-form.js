@@ -80,7 +80,7 @@ class MemeForm extends Component {
         const {name} =  this.props.selectedMeme
  
         let svg = document.getElementById('svg_ref')
-        saveSvgAsPng(svg, 'test_test.png')
+        saveSvgAsPng(svg, 'meme.png')
         const myImgUri = await svgAsDataUri(svg)
 
         const myMeme = {
@@ -88,7 +88,7 @@ class MemeForm extends Component {
             url: myImgUri
         }
 
-        console.log(myMeme)
+        console.log(myMeme.url)
         // POST request 
         API.createMeme(myMeme)
             .then(myMeme => this.props.addToMyMemes(myMeme));       

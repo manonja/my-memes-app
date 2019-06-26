@@ -1,12 +1,19 @@
 # my-memes-app
-Browse images, pick up one, create a meme, save it to your account. 
+Browse images, pick up one, create a meme, download it and save it to your profile.
 
 ## Project background
 1. Use a Rails API backend 
 2. Use a React frontend
-3. Use two models in the backend
-4. Has a full CRUD actions
-5. Has a Authentication/authorization part
+3. Models in the backend: for the users and for the customized memes. 
+4. Has a Authentication/authorization part. 
+
+## Technical details
+- frontend built with HTML and React.
+- styling with pure CSS and MDBootstrap.
+- use of svg format to create a new meme, and `svg-as-png` library to save the meme as a png file.
+- backend built with Ruby on Rails with two endpoints (one for the users, one for the customized memes).
+- use of Imgflip API to get images templates. 
+- user JWT for the Authentication part.
 
 ## Getting started
 Fork and clone the project https://github.com/manonja/my-memes-app 
@@ -27,9 +34,5 @@ Fork and clone the project https://github.com/manonja/my-memes-app
 If you have an account, just login. If you don't, sigup!
 Create memes and save them to your account.
 
-## MVP 
-
-
 ## Authors
-Thomas Edwards - https://github.com/tomo10
-Manon Jacquin - https://github.com/manonja
+Thomas Edwards (https://github.com/tomo10) & Manon Jacquin (https://github.com/manonja)
