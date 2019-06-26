@@ -39,7 +39,6 @@ class Signup extends Component {
     
                     <input 
                         name='username' 
-                        type='password'
                         id="defaultSignup" 
                         onChange={this.handleChange} 
                         value={this.state.username} 
